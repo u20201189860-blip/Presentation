@@ -149,14 +149,6 @@
       font-size: 1.1rem;
     }
 
-    section h2 span.time {
-      font-size: .76rem;
-      color: var(--muted);
-      padding: .2rem .55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(55,65,81,0.8);
-    }
-
     .pill {
       display: inline-flex;
       align-items: center;
@@ -482,7 +474,6 @@
         ChatGPT and ELT: Exploring Teachers' Voices (Mabuan, 2023)
         <span class="badge">Master's Presentation · ELT & AI</span>
       </h1>
-      <p>Interactive 20-minute lesson plan based on Mabuan (2023), integrating icebreaker, role-play, guided discussion, SLA links, and creative closure.</p>
       <p class="tagline">“This article invites us to seek balance: ChatGPT does not replace teaching, but it does transform our practice.”</p>
     </div>
     <div class="hero-image-wrapper">
@@ -494,26 +485,22 @@
   <div class="grid">
     <!-- Icebreaker -->
     <section id="rompehielo">
-      <h2>
-        Minute 0–2: Icebreaker
-        <span class="time">0–2 min</span>
-      </h2>
+      <h2>Icebreaker: Team ChatGPT or Team Teacher?</h2>
       <div class="pill">
-        Activity: <strong>“Team ChatGPT or Team Teacher?”</strong>
+        Activity: <strong>Live poll with real-time results.</strong>
       </div>
       <p class="small">
-        State the prompt, do the exaggerated mini-dialogue, and then ask who belongs to each team. Here you can keep a live visual count:
+        Each participant can vote from their own device. Results update instantly on everyone’s screen.
       </p>
 
       <div class="card">
         <div class="card-title">Live voting</div>
-        <p class="small">Ask classmates to raise their hands and register votes by clicking:</p>
         <div class="btn-row">
-          <button onclick="vote('chatgpt')" class="btn-accent">
-            🤖 Team ChatGPT
+          <button class="btn-accent" onclick="submitVote('chatgpt')">
+            🤖 Vote Team ChatGPT
           </button>
-          <button onclick="vote('teacher')" class="btn-ghost-danger">
-            🧑‍🏫 Team Teacher
+          <button class="btn-ghost-danger" onclick="submitVote('teacher')">
+            🧑‍🏫 Vote Team Teacher
           </button>
         </div>
         <div class="btn-row">
@@ -523,26 +510,18 @@
           <span class="badge-counter danger">
             Teacher: <span id="countTeacher">0</span>
           </span>
-          <button onclick="resetVotes()">
-            🔄 Reset count
-          </button>
         </div>
         <p class="small">
-          Then you can say something like:
-          <br>
-          <span class="highlight">“Now that we’re clearly divided, let’s see what Mabuan actually found about this whole debate…”</span>
+          <span class="highlight">Suggested line:</span><br>
+          “Now that we can see how the group is divided, let’s look at what Mabuan found about teachers’ perceptions of ChatGPT.”
         </p>
-        <!-- Optional small AI icon/image -->
         <img src="ai-image-2.jpg" alt="Chatbot concept" class="section-image">
       </div>
     </section>
 
     <!-- Article explanation -->
     <section id="explicacion">
-      <h2>
-        Minute 2–5: Article overview
-        <span class="time">2–5 min</span>
-      </h2>
+      <h2>Article overview</h2>
       <div class="pill">
         Goal: <strong>Explain what Mabuan did in simple terms.</strong>
       </div>
@@ -591,16 +570,12 @@
           </div>
         </div>
       </div>
-      <!-- Optional small AI image -->
       <img src="ai-image-3.jpg" alt="Data and networks" class="section-image">
     </section>
 
     <!-- Role-play central -->
     <section id="roleplay">
-      <h2>
-        Minute 5–10: “ChatGPT vs Teacher Challenge”
-        <span class="time">5–10 min</span>
-      </h2>
+      <h2>“ChatGPT vs Teacher Challenge”</h2>
       <div class="pill">
         Dynamic: <strong>Pedagogical role-play with practical cases.</strong>
       </div>
@@ -629,10 +604,7 @@
 
     <!-- Guided discussion -->
     <section id="discusion">
-      <h2>
-        Minute 10–15: Guided discussion
-        <span class="time">10–15 min</span>
-      </h2>
+      <h2>Guided discussion</h2>
       <div class="pill">
         Goal: <strong>Generate critical debate and involve the group.</strong>
       </div>
@@ -655,10 +627,7 @@
 
     <!-- Theory–practice connection -->
     <section id="conexion">
-      <h2>
-        Minute 15–18: Connecting theory and practice
-        <span class="time">15–18 min</span>
-      </h2>
+      <h2>Connecting theory and practice</h2>
       <div class="pill">
         Aim: <strong>Link the article to your own experience and SLA readings.</strong>
       </div>
@@ -690,15 +659,12 @@
 
     <!-- Creative closure -->
     <section id="cierre">
-      <h2>
-        Minute 18–20: Creative closing
-        <span class="time">18–20 min</span>
-      </h2>
+      <h2>Activity: “If ChatGPT were a teacher…”</h2>
       <div class="pill">
-        Activity: <strong>“If ChatGPT were a teacher…”</strong>
+        Interactive closing: <strong>Real-time shared phrases.</strong>
       </div>
       <p class="small">
-        Ask each student to describe, in <strong>6–8 words</strong>, what an ideal teacher would be like if they had ChatGPT’s capacities but remained human.
+        Each participant can describe, in <strong>6–8 words</strong>, what an ideal teacher would be like if they had ChatGPT’s capacities but remained human.
       </p>
 
       <div class="phrases-box">
@@ -706,14 +672,15 @@
           <input
             type="text"
             id="phraseInput"
+            maxlength="120"
             placeholder="E.g.: Infinite patience, but no understanding of my emotions..."
           />
-          <button class="btn-accent" onclick="addPhrase()">
-            ➕ Add phrase
+          <button class="btn-accent" onclick="submitPhrase()">
+            ➕ Send phrase
           </button>
         </div>
         <p class="phrase-tips">
-          Use this section in real time if classmates dictate their phrases and you type them here.
+          All phrases sent by participants will appear below in real time for everyone.
         </p>
         <ul class="phrase-list" id="phraseList">
           <!-- Phrases will be added here -->
@@ -734,36 +701,34 @@
   </footer>
 </div>
 
+<!-- Firebase SDKs (compat version for simpler syntax) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
 <script>
-  // ---- Voting for the icebreaker ----
-  let countChatGPT = 0;
-  let countTeacher = 0;
+  // ============================
+  // 1. FIREBASE INITIALIZATION
+  // ============================
+  // TODO: replace this config object with your Firebase project settings
+  // You get this in Firebase console: Project settings → General → Your apps → CDN config.
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
 
-  function updateVoteDisplay() {
-    document.getElementById("countChatGPT").textContent = countChatGPT;
-    document.getElementById("countTeacher").textContent = countTeacher;
-  }
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-  function vote(team) {
-    if (team === "chatgpt") {
-      countChatGPT++;
-    } else if (team === "teacher") {
-      countTeacher++;
-    }
-    updateVoteDisplay();
-  }
-
-  function resetVotes() {
-    countChatGPT = 0;
-    countTeacher = 0;
-    updateVoteDisplay();
-  }
-
-  // ---- Accordion for article explanation ----
+  // ============================
+  // 2. ACCORDION BEHAVIOUR
+  // ============================
   function toggleAccordion(headerEl) {
     const item = headerEl.parentElement;
     const isOpen = item.classList.contains("open");
-    // Close all items (for single-open behavior)
     document.querySelectorAll(".accordion-item").forEach(el => {
       el.classList.remove("open");
       const body = el.querySelector(".accordion-body");
@@ -778,14 +743,9 @@
     }
   }
 
-  // Adjust heights for default open sections
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".accordion-item.open .accordion-body").forEach(body => {
-      body.style.maxHeight = body.scrollHeight + "px";
-    });
-  });
-
-  // ---- Cases for role-play ----
+  // ============================
+  // 3. ROLE-PLAY CASES
+  // ============================
   const cases = [
     "Case 1: A student uses ChatGPT to write an entire essay and submits it as if it were their own work.",
     "Case 2: An adult class wants to improve oral fluency and relies heavily on ChatGPT to practise dialogues.",
@@ -810,29 +770,88 @@
     renderCase();
   }
 
-  // ---- Phrases for the creative closing ----
-  function addPhrase() {
-    const input = document.getElementById("phraseInput");
-    const text = (input.value || "").trim();
-    if (!text) return;
-    const list = document.getElementById("phraseList");
-    const li = document.createElement("li");
-    const icon = document.createElement("span");
-    icon.className = "icon";
-    icon.textContent = "💬";
-    const content = document.createElement("span");
-    content.textContent = text;
-    li.appendChild(icon);
-    li.appendChild(content);
-    list.appendChild(li);
-    input.value = "";
-    input.focus();
+  // ============================
+  // 4. LIVE VOTING (real-time)
+  // ============================
+  const votesCollection = db.collection("votes_mabuan");
+
+  function submitVote(team) {
+    if (!["chatgpt", "teacher"].includes(team)) return;
+    votesCollection.add({
+      team,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(console.error);
   }
 
-  // Initialisation on load
+  function listenToVotes() {
+    votesCollection.onSnapshot(snapshot => {
+      let chatgpt = 0;
+      let teacher = 0;
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        if (data.team === "chatgpt") chatgpt++;
+        if (data.team === "teacher") teacher++;
+      });
+      const elChatGPT = document.getElementById("countChatGPT");
+      const elTeacher = document.getElementById("countTeacher");
+      if (elChatGPT) elChatGPT.textContent = chatgpt;
+      if (elTeacher) elTeacher.textContent = teacher;
+    }, console.error);
+  }
+
+  // ============================
+  // 5. REAL-TIME PHRASES
+  // ============================
+  const phrasesCollection = db.collection("phrases_mabuan");
+
+  function submitPhrase() {
+    const input = document.getElementById("phraseInput");
+    if (!input) return;
+    const text = (input.value || "").trim();
+    if (!text) return;
+    phrasesCollection.add({
+      text,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+      input.value = "";
+      input.focus();
+    }).catch(console.error);
+  }
+
+  function listenToPhrases() {
+    phrasesCollection
+      .orderBy("timestamp", "asc")
+      .onSnapshot(snapshot => {
+        const list = document.getElementById("phraseList");
+        if (!list) return;
+        list.innerHTML = "";
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          if (!data.text) return;
+          const li = document.createElement("li");
+          const icon = document.createElement("span");
+          icon.className = "icon";
+          icon.textContent = "💬";
+          const content = document.createElement("span");
+          content.textContent = data.text;
+          li.appendChild(icon);
+          li.appendChild(content);
+          list.appendChild(li);
+        });
+      }, console.error);
+  }
+
+  // ============================
+  // 6. INITIALISATION
+  // ============================
   document.addEventListener("DOMContentLoaded", () => {
-    updateVoteDisplay();
+    // Set accordion heights
+    document.querySelectorAll(".accordion-item.open .accordion-body").forEach(body => {
+      body.style.maxHeight = body.scrollHeight + "px";
+    });
     renderCase();
+    listenToVotes();
+    listenToPhrases();
   });
 </script>
 </body>
