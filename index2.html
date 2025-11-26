@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ChatGPT and ELT: Exploring Teachers' Voices (Mabuan, 2023)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --card: #1f2937;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.15);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(0,0,0,0.45);
+      --transition: 0.2s ease;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2933 0, #020617 55%, #000 100%);
+      color: var(--text);
+      padding: 1.5rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page { width: 100%; max-width: 1100px; }
+
+    header {
+      background: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(129,140,248,0.05));
+      border-radius: var(--radius-xl);
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 1.8rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148,163,184,0.2);
+      backdrop-filter: blur(16px);
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+      gap: 1rem;
+      align-items: center;
+    }
+
+    @media (max-width: 850px) {
+      header {
+        grid-template-columns: 1fr;
+        padding: 1.3rem 1.2rem;
+      }
+    }
+
+    h1 {
+      margin: 0 0 .4rem;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    h1 span.badge {
+      font-size: .8rem;
+      padding: .15rem .55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      color: var(--muted);
+    }
+
+    .tagline {
+      margin-top: .5rem;
+      font-size: .9rem;
+      color: #f9fafb;
+      font-style: italic;
+    }
+
+    .hero-image-wrapper { display: flex; justify-content: center; }
+
+    .hero-image {
+      width: 100%;
+      max-width: 260px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: 0 16px 45px rgba(15,23,42,0.7);
+      object-fit: cover;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1.1fr;
+      gap: 1.3rem;
+    }
+
+    @media (max-width: 850px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    section {
+      background: linear-gradient(145deg, #020617, #020617 30%, #050816 75%);
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.4rem;
+      border: 1px solid rgba(31,41,55,0.98);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.08), transparent 55%);
+      opacity: .9;
+      pointer-events: none;
+    }
+
+    section > * { position: relative; z-index: 1; }
+
+    section h2 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1.1rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      padding: .14rem .55rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(55,65,81,0.9);
+      font-size: .78rem;
+      color: var(--muted);
+      margin-bottom: .5rem;
+    }
+
+    .pill strong { color: var(--accent); font-weight: 600; }
+
+    .small { font-size: .86rem; color: var(--muted); }
+
+    .card {
+      background: rgba(15,23,42,0.92);
+      border-radius: 14px;
+      padding: .75rem .9rem;
+      border: 1px solid rgba(31,41,55,1);
+      margin-top: .5rem;
+    }
+
+    .card-title {
+      font-size: .9rem;
+      font-weight: 600;
+      color: #e5e7eb;
+      margin-bottom: .35rem;
+    }
+
+    ul, ol {
+      margin: .3rem 0 .3rem 1.1rem;
+      padding: 0;
+      font-size: .9rem;
+      color: var(--muted);
+    }
+
+    li + li { margin-top: .15rem; }
+
+    .highlight { color: #fbbf24; font-weight: 500; }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin: .55rem 0;
+    }
+
+    button {
+      border-radius: 999px;
+      border: none;
+      padding: .4rem .85rem;
+      font-size: .85rem;
+      font-weight: 500;
+      cursor: pointer;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(55,65,81,0.95);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition);
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border-color: var(--accent);
+      background: rgba(15,23,42,1);
+    }
+
+    button:active { transform: translateY(0); box-shadow: none; }
+
+    .btn-accent {
+      background: linear-gradient(135deg, #22d3ee, #38bdf8);
+      border-color: transparent;
+      color: #020617;
+      font-weight: 600;
+    }
+
+    .btn-accent:hover {
+      background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+      transform: translateY(-1px) scale(1.01);
+    }
+
+    .btn-ghost-danger {
+      border-color: rgba(248,113,113,0.7);
+      color: #fecaca;
+    }
+
+    .badge-counter {
+      font-size: .8rem;
+      padding: .1rem .5rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(55,65,81,1);
+      color: var(--muted);
+    }
+
+    .badge-counter span { color: var(--accent); font-weight: 600; }
+
+    .badge-counter.danger span { color: var(--danger); }
+
+    .badge-counter.success span { color: var(--success); }
+
+    .accordion { margin-top: .4rem; }
+
+    .accordion-item {
+      border-radius: 12px;
+      border: 1px solid rgba(31,41,55,0.95);
+      background: rgba(15,23,42,0.98);
+      overflow: hidden;
+      margin-bottom: .35rem;
+    }
+
+    .accordion-header {
+      padding: .55rem .75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: .9rem;
+    }
+
+    .accordion-header span.label {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .accordion-header span.chevron {
+      font-size: .9rem;
+      color: var(--muted);
+      transition: transform var(--transition);
+    }
+
+    .accordion-item.open .accordion-header span.chevron { transform: rotate(90deg); }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.22s ease;
+      padding: 0 .75rem;
+    }
+
+    .accordion-item.open .accordion-body { padding: 0 .75rem .55rem; }
+
+    .accordion-body p {
+      font-size: .86rem;
+      color: var(--muted);
+      margin: .4rem 0 .2rem;
+    }
+
+    .cases-box {
+      margin-top: .5rem;
+      padding: .7rem .8rem;
+      border-radius: 12px;
+      background: radial-gradient(circle at top right, rgba(56,189,248,0.12), rgba(15,23,42,0.95));
+      border: 1px solid rgba(51,65,85,1);
+    }
+
+    .cases-title {
+      font-size: .88rem;
+      font-weight: 600;
+      margin-bottom: .35rem;
+    }
+
+    .case-current {
+      margin: .4rem 0;
+      font-size: .9rem;
+      color: var(--text);
+    }
+
+    .case-meta { font-size: .8rem; color: var(--muted); margin-bottom: .2rem; }
+
+    .question-list li { margin-bottom: .25rem; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+      margin-top: .35rem;
+    }
+
+    .chip {
+      font-size: .78rem;
+      border-radius: 999px;
+      padding: .15rem .55rem;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(55,65,81,0.9);
+      color: var(--muted);
+    }
+
+    .chip span { color: var(--accent); font-weight: 500; }
+
+    .phrases-box { margin-top: .55rem; }
+
+    .phrases-input-row {
+      display: flex;
+      gap: .5rem;
+      margin-bottom: .45rem;
+    }
+
+    @media (max-width: 600px) {
+      .phrases-input-row { flex-direction: column; }
+    }
+
+    input[type="text"] {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid rgba(55,65,81,0.9);
+      padding: .4rem .8rem;
+      background: rgba(15,23,42,0.95);
+      color: var(--text);
+      font-size: .85rem;
+      outline: none;
+    }
+
+    input[type="text"]::placeholder { color: #6b7280; }
+
+    input[type="text"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(56,189,248,0.35);
+    }
+
+    .phrase-tips {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-bottom: .25rem;
+    }
+
+    .phrase-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 160px;
+      overflow-y: auto;
+    }
+
+    .phrase-list li {
+      font-size: .86rem;
+      padding: .25rem .55rem;
+      background: rgba(15,23,42,0.9);
+      border-radius: 999px;
+      border: 1px solid rgba(31,41,55,0.9);
+      margin-bottom: .25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+    }
+
+    .phrase-list li span.icon { font-size: .8rem; color: var(--accent); }
+
+    .section-image {
+      width: 100%;
+      max-width: 140px;
+      border-radius: 18px;
+      border: 1px solid rgba(55,65,81,0.8);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      margin-top: .6rem;
+      object-fit: cover;
+    }
+
+    footer {
+      margin-top: 1.4rem;
+      font-size: .8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div>
+      <h1>
+        ChatGPT and ELT: Exploring Teachers' Voices (Mabuan, 2023)
+        <span class="badge">Master's Presentation · ELT & AI</span>
+      </h1>
+      <p class="tagline">“This article invites us to seek balance: ChatGPT does not replace teaching, but it does transform our practice.”</p>
+    </div>
+    <div class="hero-image-wrapper">
+      <img src="ai-image-1.jpg" alt="Abstract AI illustration" class="hero-image">
+    </div>
+  </header>
+
+  <div class="grid">
+    <!-- Icebreaker -->
+    <section id="rompehielo">
+      <h2>Icebreaker: Team ChatGPT or Team Teacher?</h2>
+      <div class="pill">
+        Activity: <strong>Live poll with real-time results.</strong>
+      </div>
+      <p class="small">
+        Each participant can vote from their own device. Results update instantly on everyone’s screen.
+      </p>
+
+      <div class="card">
+        <div class="card-title">Live voting</div>
+        <div class="btn-row">
+          <button class="btn-accent" onclick="submitVote('chatgpt')">
+            🤖 Vote Team ChatGPT
+          </button>
+          <button class="btn-ghost-danger" onclick="submitVote('teacher')">
+            🧑‍🏫 Vote Team Teacher
+          </button>
+        </div>
+        <div class="btn-row">
+          <span class="badge-counter success">
+            ChatGPT: <span id="countChatGPT">0</span>
+          </span>
+          <span class="badge-counter danger">
+            Teacher: <span id="countTeacher">0</span>
+          </span>
+        </div>
+        <p class="small">
+          <span class="highlight">Suggested line:</span><br>
+          “Now that we can see how the group is divided, let’s look at what Mabuan found about teachers’ perceptions of ChatGPT.”
+        </p>
+        <img src="ai-image-2.jpg" alt="Chatbot concept" class="section-image">
+      </div>
+    </section>
+
+    <!-- Article explanation -->
+    <section id="explicacion">
+      <h2>Article overview</h2>
+      <div class="pill">
+        Goal: <strong>Explain what Mabuan did in simple terms.</strong>
+      </div>
+      <div class="accordion">
+        <div class="accordion-item open">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="label">What did Mabuan investigate?</span>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="accordion-body">
+            <p>Mabuan explored how <strong>English teachers</strong> perceive the use of ChatGPT in language teaching and learning. The focus is not only “do they like it?” but how it fits into pedagogy, ethics, and the teacher’s professional role.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="label">Participants</span>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="accordion-body">
+            <p>The study involved <strong>115 ELT teachers</strong> in <strong>Metro Manila</strong>, Philippines.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="label">Method (mixed methods)</span>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="accordion-body">
+            <ul>
+              <li>Online survey to obtain an overall picture.</li>
+              <li>Focus Group Discussions (FGDs) to go deeper into perceptions, fears, and expectations.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="label">Key research questions</span>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="accordion-body">
+            <ul>
+              <li>What benefits do teachers see in using ChatGPT?</li>
+              <li>What limitations and risks do they identify (plagiarism, overdependence, ethics)?</li>
+              <li>What role should the teacher take in this new digital landscape?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <img src="ai-image-3.jpg" alt="Data and networks" class="section-image">
+    </section>
+
+    <!-- Role-play central -->
+    <section id="roleplay">
+      <h2>“ChatGPT vs Teacher Challenge”</h2>
+      <div class="pill">
+        Dynamic: <strong>Pedagogical role-play with practical cases.</strong>
+      </div>
+      <p class="small">
+        Give each group two cards: <span class="highlight">A: Benefits</span> and <span class="highlight">B: Limitations</span>.
+        Then they will work with a practical case, which you can rotate using this selector:
+      </p>
+
+      <div class="cases-box">
+        <div class="cases-title">Cases for the “ChatGPT vs Teacher Challenge”</div>
+        <p class="case-meta">
+          Click <strong>“Next case”</strong> to change the scenario.
+        </p>
+        <p class="case-current" id="currentCase"></p>
+        <div class="btn-row">
+          <button class="btn-accent" onclick="nextCase()">➡️ Next case</button>
+          <button onclick="resetCases()">🔁 Restart cases</button>
+        </div>
+        <ul class="question-list">
+          <li>Which part of the article is connected to this case?</li>
+          <li>What would a responsible teacher do in this situation?</li>
+          <li>Which pedagogical decision is consistent with the <strong>TPACK</strong> framework?</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Guided discussion -->
+    <section id="discusion">
+      <h2>Guided discussion</h2>
+      <div class="pill">
+        Goal: <strong>Generate critical debate and involve the group.</strong>
+      </div>
+      <p class="small">
+        Ask the questions and let answers flow. You can use prompts like:
+        <span class="highlight">“Does anyone want to challenge that?”</span> or <span class="highlight">“What do people at the back think?”</span>.
+      </p>
+
+      <div class="card">
+        <div class="card-title">Guiding questions</div>
+        <ul>
+          <li>How realistic is teachers’ fear of plagiarism with ChatGPT?</li>
+          <li>Does ChatGPT increase or decrease learner autonomy?</li>
+          <li>Can a student really improve oral fluency with a tool that lacks real cultural context?</li>
+          <li>According to TPACK, what is the teacher’s role in this scenario?</li>
+          <li>Do the article’s findings reflect our own perceptions as students and future teachers?</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Theory–practice connection -->
+    <section id="conexion">
+      <h2>Connecting theory and practice</h2>
+      <div class="pill">
+        Aim: <strong>Link the article to your own experience and SLA readings.</strong>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Connection with your teaching experience</div>
+        <p class="small">
+          Example line to mention:
+          <br>
+          <span class="highlight">“In my teaching practicum I have seen students use ChatGPT to improve their writing, but I’ve also seen others copy entire texts without any critical thinking, which echoes Mabuan’s concerns about plagiarism and dependence.”</span>
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Connection with SLA and teacher beliefs</div>
+        <ul>
+          <li><strong>Language anxiety (Horwitz):</strong> ChatGPT may lower anxiety by allowing private practice without judgment.</li>
+          <li><strong>Motivation (Dörnyei):</strong> Immediate feedback can increase engagement and motivation.</li>
+          <li><strong>Traditional teacher beliefs:</strong> The belief that “learning = manual effort” may clash with the use of AI tools.</li>
+          <li><strong>TPACK and teacher agency:</strong> The challenge is not just using the tool, but integrating it pedagogically and ethically.</li>
+        </ul>
+        <div class="chips">
+          <div class="chip"><span>SLA</span> • anxiety & motivation</div>
+          <div class="chip"><span>TPACK</span> • critical tech integration</div>
+          <div class="chip"><span>Agency</span> • active teacher role</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Creative closure -->
+    <section id="cierre">
+      <h2>Activity: “If ChatGPT were a teacher…”</h2>
+      <div class="pill">
+        Interactive closing: <strong>Real-time shared phrases.</strong>
+      </div>
+      <p class="small">
+        Each participant can describe, in <strong>6–8 words</strong>, what an ideal teacher would be like if they had ChatGPT’s capacities but remained human.
+      </p>
+
+      <div class="phrases-box">
+        <div class="phrases-input-row">
+          <input
+            type="text"
+            id="phraseInput"
+            maxlength="120"
+            placeholder="E.g.: Infinite patience, but no understanding of my emotions..."
+          />
+          <button class="btn-accent" onclick="submitPhrase()">
+            ➕ Send phrase
+          </button>
+        </div>
+        <p class="phrase-tips">
+          All phrases sent by participants will appear below in real time for everyone.
+        </p>
+        <ul class="phrase-list" id="phraseList">
+          <!-- Phrases will be added here -->
+        </ul>
+      </div>
+
+      <div class="card" style="margin-top:.7rem;">
+        <div class="card-title">Suggested closing line</div>
+        <p class="small">
+          “This article shows that ChatGPT does not replace the teacher, but it does transform our practice. The challenge is not to choose between ‘Team ChatGPT’ or ‘Team Teacher’, but to find a balance where technology enhances learning without losing what is human.”
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    Interactive page for your Master's presentation on Mabuan (2023) – ready to use in class. ✨
+  </footer>
+</div>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBTzn3U9byArGCVRq56VAwoMDPzEYu8hfY",
+    authDomain: "mabuman-chatgpt-presentation.firebaseapp.com",
+    projectId: "mabuman-chatgpt-presentation",
+    storageBucket: "mabuman-chatgpt-presentation.firebasestorage.app",
+    messagingSenderId: "373128641760",
+    appId: "1:373128641760:web:ec735e6fa71353a940e485"
+  };
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // 2) ACCORDION
+  function toggleAccordion(headerEl) {
+    const item = headerEl.parentElement;
+    const isOpen = item.classList.contains("open");
+    document.querySelectorAll(".accordion-item").forEach(el => {
+      el.classList.remove("open");
+      const body = el.querySelector(".accordion-body");
+      if (body) body.style.maxHeight = 0;
+    });
+    if (!isOpen) {
+      item.classList.add("open");
+      const body = item.querySelector(".accordion-body");
+      if (body) body.style.maxHeight = body.scrollHeight + "px";
+    }
+  }
+
+  // 3) ROLE-PLAY CASES
+  const cases = [
+    "Case 1: A student uses ChatGPT to write an entire essay and submits it as if it were their own work.",
+    "Case 2: An adult class wants to improve oral fluency and relies heavily on ChatGPT to practise dialogues.",
+    "Case 3: A low-level learner translates absolutely everything with ChatGPT and never tries to produce language independently."
+  ];
+  let currentCaseIndex = 0;
+
+  function renderCase() {
+    const el = document.getElementById("currentCase");
+    if (el) el.textContent = cases[currentCaseIndex];
+  }
+  function nextCase() {
+    currentCaseIndex = (currentCaseIndex + 1) % cases.length;
+    renderCase();
+  }
+  function resetCases() {
+    currentCaseIndex = 0;
+    renderCase();
+  }
+
+  // 4) LIVE VOTING
+  const votesCollection = db.collection("votes_mabuan");
+
+  function submitVote(team) {
+    if (!["chatgpt", "teacher"].includes(team)) return;
+    votesCollection.add({
+      team,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(err => console.error("Error sending vote:", err));
+  }
+
+  function listenToVotes() {
+    votesCollection.onSnapshot(snapshot => {
+      let chatgpt = 0;
+      let teacher = 0;
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        if (data.team === "chatgpt") chatgpt++;
+        if (data.team === "teacher") teacher++;
+      });
+      document.getElementById("countChatGPT").textContent = chatgpt;
+      document.getElementById("countTeacher").textContent = teacher;
+    }, err => console.error("Error listening to votes:", err));
+  }
+
+  // 5) REAL-TIME PHRASES
+  const phrasesCollection = db.collection("phrases_mabuan");
+
+  function submitPhrase() {
+    const input = document.getElementById("phraseInput");
+    const text = (input.value || "").trim();
+    if (!text) return;
+    phrasesCollection.add({
+      text,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+      input.value = "";
+      input.focus();
+    }).catch(err => console.error("Error sending phrase:", err));
+  }
+
+  function listenToPhrases() {
+    phrasesCollection.orderBy("timestamp", "asc").onSnapshot(snapshot => {
+      const list = document.getElementById("phraseList");
+      list.innerHTML = "";
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        if (!data.text) return;
+        const li = document.createElement("li");
+        const icon = document.createElement("span");
+        icon.className = "icon";
+        icon.textContent = "💬";
+        const content = document.createElement("span");
+        content.textContent = data.text;
+        li.appendChild(icon);
+        li.appendChild(content);
+        list.appendChild(li);
+      });
+    }, err => console.error("Error listening to phrases:", err));
+  }
+
+  // 6) INIT
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".accordion-item.open .accordion-body").forEach(body => {
+      body.style.maxHeight = body.scrollHeight + "px";
+    });
+    renderCase();
+    listenToVotes();
+    listenToPhrases();
+  });
+</script>
+</body>
+</html>
